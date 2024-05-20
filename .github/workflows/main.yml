@@ -13,17 +13,26 @@ jobs:
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: "3.11"
-      - run: poetry install
-      # - name: Poetry Install
-      # - uses: knowsuchagency/poetry-install@v2
-      # with:
-      # Have poetry create a virtualenv for the project on installation.
-      # create-virtualenv: true
+      - name: Install Poetry Action
+      - uses: snok/install-poetry@v1.3.4
+        with:
+          # The Poetry version to install
+          version: # default is latest
+          # Whether Poetry should create a virtualenv or not
+          virtualenvs-create: # optional, default is true
+          # Whether Poetry should create virtualenvs in the project directory or not
+          virtualenvs-in-project: # optional, default is false
+          # The Poetry virtualenv path
+          virtualenvs-path: # optional, default is {cache-dir}/virtualenvs
+          # Whether to install many packages at once or one by one. This can fix PyPI DNS resolution errors, but also slows down the installation
+          installer-parallel: # optional, default is true
+          # Arguments passed directly to the Poetry installation script. For example --force.
+          installation-arguments: # optional
       - name: Run scraper
-        run: poetry run python download.py
-          
-    
+        run: poetry install && poetry run python download.py
+            
       
-      
-          
-          
+        
+        
+            
+            
