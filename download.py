@@ -18,7 +18,7 @@ def check_date(today):
 # download the data
 def download_data():
     response = requests.get(url)
-    with open(f"data/{datetime.now().strftime('%Y-%m-%d')}.csv", "wb") as file:
+    with open(f"waitlist_data/{datetime.now().strftime('%Y-%m-%d')}.csv", "wb") as file:
         file.write(response.content)
     
     return True
