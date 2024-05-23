@@ -5,16 +5,17 @@ import glob
 url = "https://data.sfgov.org/api/views/w4sk-nq57/rows.csv?accessType=DOWNLOAD"
 
 
-
+# check if the file for today has already been downloaded
 def check_date(today):
 
-    existing_files = glob.glob("*.csv")
+    existing_files = glob.glob("waitlist_data/*.csv")
     
     if today in existing_files:
         return False
     else:
         return True
-    
+
+# download the data
 def download_data():
     response = requests.get(url)
     with open(f"data/{datetime.now().strftime('%Y-%m-%d')}.csv", "wb") as file:
