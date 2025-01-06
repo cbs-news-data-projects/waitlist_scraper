@@ -17,7 +17,7 @@ jobs:
       - uses: snok/install-poetry@v1.3.4
       
       - name: Run scraper
-        run: poetry install && poetry run python download.py
+        run: poetry install --no-root && poetry run python download.py
 
       - name: Update chart
         run: poetry run jupyter execute chart.ipynb
